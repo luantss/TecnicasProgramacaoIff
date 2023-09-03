@@ -42,7 +42,7 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
                     System.out.println("O vetor não possui mais espaço para armazenamento");
                     System.out.println("Deseja aumentar o tamanho do vetor? Sim ou Não?");
                     resposta = entradaTeclado.nextLine();
-                    if(resposta.equals("Sim")) {
+                    if(resposta.equalsIgnoreCase("sim")) {
                         aumentarVetor(this.vetorMusica);
                         System.out.println("Novo tamanho: " + this.tamanhoVetor);
                     } else {
