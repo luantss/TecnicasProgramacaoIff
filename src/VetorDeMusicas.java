@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class VetorDeMusicas implements ColecaoDeMusicas {
 
     private Musica[] vetorMusica;
@@ -23,6 +26,8 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
     @Override
     public void adicionarMusica(Musica novaMusica) {
 
+        Scanner entradaTeclado = new Scanner(System.in);
+        String resposta;
         if(novaMusica != null) {
 
             if(!validaAtributoNulo(novaMusica)) {
@@ -34,7 +39,15 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
                     System.out.println("Música adicionada com sucesso");
 
                 } else {
-                    throw new IndexOutOfBoundsException("O vetor não possui mais espaço para armazenamento");
+                    System.out.println("O vetor não possui mais espaço para armazenamento");
+                    System.out.println("Deseja aumentar o tamanho do vetor? Sim ou Não?");
+                    resposta = entradaTeclado.nextLine();
+                    if(resposta.equals("Sim")) {
+                        aumentarVetor(this.vetorMusica);
+                        System.out.println("Novo tamanho: " + this.tamanhoVetor);
+                    } else {
+                        throw new IndexOutOfBoundsException("O vetor não possui mais espaço para armazenamento");
+                    }
                 }
             } else {
                 System.out.println("A música não pode possuir valores nulos");
@@ -176,5 +189,11 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
 
         return musica.getArtist() == null || musica.getTrack() == null || musica.getDanceability() == null ||
                 musica.getEnergy() == null || musica.getDurationMin() == null || musica.getViews() == null || musica.getLikes() == null;
+    }
+
+    public void aumentarVetor(Musica[] vetor) {
+        int novoTamanho = this.tamanhoVetor + 500;
+        this.vetorMusica = Arrays.copyOf(this.vetorMusica, novoTamanho);
+        this.tamanhoVetor = novoTamanho;
     }
 }

@@ -1,8 +1,15 @@
 public class Musica {
 
-    private String Artist, Track, Danceability, Energy, durationMin, Views, Likes;
+    private String Artist;
+    private String Track;
 
-    public Musica(String Artist, String Track, String Danceability, String Energy, String durationMin, String Views, String Likes) {
+    private Double Danceability;
+    private Double Energy;
+    private Double durationMin;
+    private Double Views;
+    private Double Likes;
+
+    public Musica(String Artist, String Track, Double Danceability, Double Energy, Double durationMin, Double Views, Double Likes) {
 
         this.Artist = Artist;
         this.Track = Track;
@@ -29,43 +36,43 @@ public class Musica {
         Track = track;
     }
 
-    public String getDanceability() {
+    public Double getDanceability() {
         return Danceability;
     }
 
-    public void setDanceability(String danceability) {
+    public void setDanceability(Double danceability) {
         Danceability = danceability;
     }
 
-    public String getEnergy() {
+    public Double getEnergy() {
         return Energy;
     }
 
-    public void setEnergy(String energy) {
+    public void setEnergy(Double energy) {
         Energy = energy;
     }
 
-    public String getDurationMin() {
+    public Double getDurationMin() {
         return durationMin;
     }
 
-    public void setDurationMin(String durationMin) {
+    public void setDurationMin(Double durationMin) {
         this.durationMin = durationMin;
     }
 
-    public String getViews() {
+    public Double getViews() {
         return Views;
     }
 
-    public void setViews(String views) {
+    public void setViews(Double views) {
         Views = views;
     }
 
-    public String getLikes() {
+    public Double getLikes() {
         return Likes;
     }
 
-    public void setLikes(String likes) {
+    public void setLikes(Double likes) {
         Likes = likes;
     }
 }
