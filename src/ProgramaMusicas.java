@@ -11,53 +11,61 @@ public class ProgramaMusicas {
         String novoDatasetColecao = "C:\\Users\\Luan Saramago\\Documents\\Iff\\Tecnicas\\p2\\ProcessamentoDataset\\novoDatasetColecao.csv";
 
         //Vetor
-        //ColecaoDeMusicas vetorDeMusicas = datasetMusica.lerDataset(caminhoArquivoBase, new VetorDeMusicas(20018));
+        ColecaoDeMusicas vetorDeMusicas = datasetMusica.lerDataset(caminhoArquivoBase, new VetorDeMusicas(20500));
 
         Musica musica1 = new Musica("Janja", "Alop", 35.2, 35.2, 35.2, 5.0, 2.0);
         Musica musica2 = new Musica("Mathew", "Nunu", 35.2, 35.2, 35.2, 6.0, 8.0);
         Musica musica3 = null;
 
         // Exclusão
-        /*vetorDeMusicas.excluirMusica("PART OF ME HARDSTYLE");
-        vetorDeMusicas.excluirMusica("Elevated");
+        //vetorDeMusicas.excluirMusica("PART OF ME HARDSTYLE");
+        //vetorDeMusicas.excluirMusica("Elevated");
 
         // Adição
         vetorDeMusicas.adicionarMusica(musica1);
-        vetorDeMusicas.adicionarMusica(musica2);
+        //vetorDeMusicas.adicionarMusica(musica2);
 
         // Obter musica
-        System.out.println("Música: "+vetorDeMusicas.obterMusica(5).getTrack());
+        //System.out.println("Música: "+vetorDeMusicas.obterMusica(20500).getTrack());
 
         // Obter total de musicas
         System.out.println("Total de musicas: "+vetorDeMusicas.obterTotalDeMusicas());
 
         // Trocar posição entre músicas
-        vetorDeMusicas.trocarPosicaoEntreMusicas(1,20017);
+        vetorDeMusicas.trocarPosicaoEntreMusicas(1,2);
 
         // Altera musica
-        vetorDeMusicas.alterarMusica(1, musica2);
+        //vetorDeMusicas.alterarMusica(50000, musica2);
 
         // Lista musicas
-        listar(vetorDeMusicas);
+        //listar(vetorDeMusicas);
 
-        datasetMusica.escreverDatasetColecao(novoDatasetColecao, vetorDeMusicas);*/
+        datasetMusica.escreverDatasetColecao(novoDatasetColecao, vetorDeMusicas);
+
+
 
         // Lista encadeada
         ColecaoDeMusicas listaDeMusica = datasetMusica.lerDataset(caminhoArquivoBase, new ListaDeMusica());
 
         //Adicionar
-        listaDeMusica.adicionarMusica(musica1);
+        //listaDeMusica.adicionarMusica(musica1);
 
         //Exclusão
-        listaDeMusica.excluirMusica("PART OF ME HARDSTYLE");
+        //listaDeMusica.excluirMusica("PART OF ME HARDSTYLE");
 
         //Obter
-        System.out.println(listaDeMusica.obterMusica(5000).getTrack());;
+        //System.out.println(listaDeMusica.obterMusica(50000).getTrack());;
 
         //Obter total
-        System.out.println(listaDeMusica.obterTotalDeMusicas());
+        //System.out.println(listaDeMusica.obterTotalDeMusicas());
 
-        datasetMusica.escreverDatasetColecao(novoDatasetColecao, listaDeMusica);
+        //Alterar
+        //listaDeMusica.alterarMusica(-1, musica2);
+
+        //Trocar posição
+        //listaDeMusica.trocarPosicaoEntreMusicas(-5, 3);
+
+        //datasetMusica.escreverDatasetColecao(novoDatasetColecao, listaDeMusica);
 
     }
 

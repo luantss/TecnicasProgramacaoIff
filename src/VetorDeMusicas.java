@@ -22,40 +22,30 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
      *
      * @param novaMusica Novo objeto Musica a ser adicionado no vetor
      * @exception NullPointerException Caso o objeto musica for nulo
+     * @exception IndexOutOfBoundsException Caso não tenha mais espaço no vetor
      */
     @Override
     public void adicionarMusica(Musica novaMusica) {
-
-        Scanner entradaTeclado = new Scanner(System.in);
-        String resposta;
-        if(novaMusica != null) {
-
-            if(!validaAtributoNulo(novaMusica)) {
+        try {
+            Scanner entradaTeclado = new Scanner(System.in);
+            String resposta;
+            if(novaMusica != null && !validaAtributoNulo(novaMusica)) {
 
                 if(this.indice < this.tamanhoVetor) {
-
                     this.vetorMusica[this.indice] = novaMusica;
                     this.indice++;
                     System.out.println("Música adicionada com sucesso");
-
                 } else {
-                    System.out.println("O vetor não possui mais espaço para armazenamento");
-                    System.out.println("Deseja aumentar o tamanho do vetor? Sim ou Não?");
-                    resposta = entradaTeclado.nextLine();
-                    if(resposta.equalsIgnoreCase("sim")) {
-                        aumentarVetor(this.vetorMusica);
-                        System.out.println("Novo tamanho: " + this.tamanhoVetor);
-                    } else {
-                        throw new IndexOutOfBoundsException("O vetor não possui mais espaço para armazenamento");
-                    }
+                    throw new IndexOutOfBoundsException();
                 }
             } else {
-                System.out.println("A música não pode possuir valores nulos");
+                throw new NullPointerException();
             }
-        } else {
-            throw new NullPointerException("A música não pode ser nula");
+        } catch (NullPointerException e) {
+            System.out.println("A música não pode ser nula ou possuir atributos nulos");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("O vetor não possui mais espaço para armazenamento");
         }
-
     }
 
     /**
@@ -67,36 +57,39 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
      */
     @Override
     public boolean excluirMusica(String nomeDaMusica) {
+        try {
+            Musica[] novoVetor = new Musica[this.tamanhoVetor];
+            boolean musicaExcluida = false;
+            int novoIndice = 0;
 
-        if (nomeDaMusica == null) {
+            if (nomeDaMusica != null && !nomeDaMusica.isEmpty()) {
+                for (int indiceMusica = 0; indiceMusica < this.indice; indiceMusica++) {
+                    Musica musica = this.vetorMusica[indiceMusica];
+
+                    if (!musica.getTrack().equals(nomeDaMusica)) {
+                        novoVetor[novoIndice] = musica;
+                        novoIndice++;
+                    } else {
+                        System.out.println("Musica " + musica.getTrack() + " excluida");
+                        musicaExcluida = true;
+                    }
+                }
+            } else {
+                throw new IllegalArgumentException();
+            }
+
+            if (musicaExcluida) {
+                this.vetorMusica = novoVetor;
+                this.indice--;
+            } else {
+                System.out.println("A música "+nomeDaMusica+ " não pode ser excluida");
+            }
+
+            return musicaExcluida;
+        } catch (IllegalArgumentException e) {
             System.out.println("O nome da música não pode ser nulo");
             return false;
         }
-
-        boolean musicaExcluida = false;
-        Musica[] novoVetor = new Musica[this.tamanhoVetor];
-
-        int novoIndice = 0;
-
-        for (int indiceMusica = 0; indiceMusica < this.indice; indiceMusica++) {
-            Musica musica = this.vetorMusica[indiceMusica];
-
-            if (!musica.getTrack().equals(nomeDaMusica)) {
-                novoVetor[novoIndice] = musica;
-                novoIndice++;
-            } else {
-                System.out.println("Musica " + musica.getTrack() + " excluida");
-                musicaExcluida = true;
-            }
-        }
-
-        if (musicaExcluida) {
-            this.vetorMusica = novoVetor;
-            this.indice--;
-        }
-
-        return musicaExcluida;
-
     }
 
     /**
@@ -107,11 +100,11 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
      */
     @Override
     public Musica obterMusica(int posicaoDaMusica) {
-
-        if (posicaoDaMusica < 0 || posicaoDaMusica >= this.indice) {
-            throw new IndexOutOfBoundsException("Posição da música inválida");
-        } else {
+        try {
             return this.vetorMusica[posicaoDaMusica];
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Posição da música inválida");
+            return null;
         }
     }
 
@@ -129,17 +122,18 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
      */
     @Override
     public void trocarPosicaoEntreMusicas(int primeiraPosicao, int segundaPosicao) {
-
-        if(primeiraPosicao >= 0 && primeiraPosicao < this.indice && segundaPosicao >= 0 && segundaPosicao < this.indice) {
-            Musica auxiliar = this.vetorMusica[primeiraPosicao];
-            this.vetorMusica[primeiraPosicao] = this.vetorMusica[segundaPosicao];
-            this.vetorMusica[segundaPosicao] = auxiliar;
-            System.out.println("Troca realizada com sucesso");
-        } else {
-            throw new IndexOutOfBoundsException("Posição da música inválida");
-            //System.out.println("Posição da música inválida");
+        try {
+            if(primeiraPosicao >= 0 && primeiraPosicao < this.indice && segundaPosicao >= 0 && segundaPosicao < this.indice) {
+                Musica auxiliar = this.vetorMusica[primeiraPosicao];
+                this.vetorMusica[primeiraPosicao] = this.vetorMusica[segundaPosicao];
+                this.vetorMusica[segundaPosicao] = auxiliar;
+                System.out.println("Troca realizada com sucesso");
+            } else {
+                throw new IndexOutOfBoundsException();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Posição da música inválida");
         }
-
     }
 
     /**
@@ -150,28 +144,18 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
      */
     @Override
     public void alterarMusica(int posicaoDaMusica, Musica novaMusica) {
-
-        if(novaMusica != null) {
-
-            if(!validaAtributoNulo(novaMusica)) {
-
-                if (posicaoDaMusica < 0 || posicaoDaMusica >= this.indice) {
-                    //throw new IndexOutOfBoundsException("Posição da música inválida");
-                    System.out.println("Posição da música inválida");
-                } else {
-                    this.vetorMusica[posicaoDaMusica] = novaMusica;
-                    System.out.println("Música alterada com sucesso");
-                }
-
+        try {
+            if(novaMusica != null && !validaAtributoNulo(novaMusica)) {
+                this.vetorMusica[posicaoDaMusica] = novaMusica;
+                System.out.println("Música alterada com sucesso");
             } else {
-                System.out.println("A música não pode possuir valores nulos");
+                throw new NullPointerException();
             }
-
-        } else {
-            //throw new NullPointerException("A música não pode ser nula");
+        } catch (NullPointerException e) {
             System.out.println("A música não pode ser nula");
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Posição da música inválida");
         }
-
     }
 
     @Override
@@ -191,9 +175,4 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
                 musica.getEnergy() == null || musica.getDurationMin() == null || musica.getViews() == null || musica.getLikes() == null;
     }
 
-    public void aumentarVetor(Musica[] vetor) {
-        int novoTamanho = this.tamanhoVetor + 500;
-        this.vetorMusica = Arrays.copyOf(this.vetorMusica, novoTamanho);
-        this.tamanhoVetor = novoTamanho;
-    }
 }
