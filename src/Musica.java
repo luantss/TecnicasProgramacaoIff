@@ -7,7 +7,6 @@ public class Musica {
     private Double durationMin;
     private Double Views;
     private Double Likes;
-    private Musica proxima;
 
     public Musica(String Artist, String Track, Double Danceability, Double Energy, Double durationMin, Double Views, Double Likes) {
 
@@ -18,7 +17,6 @@ public class Musica {
         this.durationMin = durationMin;
         this.Views = Views;
         this.Likes = Likes;
-        this.proxima = null;
     }
 
     public String getArtist() {
@@ -75,13 +73,5 @@ public class Musica {
 
     public void setLikes(Double likes) {
         Likes = likes;
-    }
-
-    public Musica obterProxima() {
-        return proxima;
-    }
-
-    public void definirProxima(Musica proxima) {
-        this.proxima = proxima;
     }
 }
