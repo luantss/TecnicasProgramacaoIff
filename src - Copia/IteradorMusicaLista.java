@@ -1,9 +1,9 @@
-public class IteradorMusica implements Iterador{
+public class IteradorMusicaLista implements Iterador{
     No musicaAtual;
     No musicaInicial;
     int indice=0;
 
-    public IteradorMusica(ColecaoDeMusicas colecao) {
+    public IteradorMusicaLista(ColecaoDeMusicas colecao) {
         this.musicaAtual = new No(colecao.obterMusica(0));
         this.musicaInicial = this.musicaAtual;
     }
