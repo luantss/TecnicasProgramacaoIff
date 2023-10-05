@@ -1,8 +1,10 @@
 public interface Iterador {
 
-    boolean temProximo();
+    public boolean temProximo();
 
-    Musica obterProximoElemento();
+    public No obterProximoElemento();
 
-    void reiniciar();
+    public int obterIndice();
+
+    public void reiniciar();
 }

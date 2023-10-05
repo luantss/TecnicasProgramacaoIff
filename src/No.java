@@ -5,7 +5,7 @@ public class No {
 
     public No(Musica musica) {
         this.musica = musica;
-        this.proximo = null;
+        this.proximo = obterProximo();
     }
 
     public Musica obterMusica() {

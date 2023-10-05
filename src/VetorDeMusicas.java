@@ -163,6 +163,12 @@ public class VetorDeMusicas implements ColecaoDeMusicas {
 
     }
 
+    @Override
+    public Iterador obterIterador(){
+        Iterador iterador = new IteradorMusica(this);
+        return iterador;
+    }
+
     /**
      * Valida se existe algum atributo nulo no objeto musica passado como parametro
      *

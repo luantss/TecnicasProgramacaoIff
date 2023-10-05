@@ -46,24 +46,26 @@ public class ProgramaMusicas {
 
         // Lista encadeada
         ColecaoDeMusicas listaDeMusica = datasetMusica.lerDataset(caminhoArquivoBase, new ListaDeMusica());
-
+        Ordenador ordenador = new OrdenarPorNomeComBubbleSort();
         //Adicionar
-        listaDeMusica.adicionarMusica(musica1);
+        //listaDeMusica.adicionarMusica(musica1);
 
         //Exclusão
-        listaDeMusica.excluirMusica("PART OF ME HARDSTYLE");
+        //listaDeMusica.excluirMusica("PART OF ME HARDSTYLE");
 
         //Obter
-        System.out.println(listaDeMusica.obterMusica(500).getTrack());;
+        //System.out.println(listaDeMusica.obterMusica(500).getTrack());;
 
         //Obter total
-        System.out.println(listaDeMusica.obterTotalDeMusicas());
+        //System.out.println(listaDeMusica.obterTotalDeMusicas());
 
         //Alterar
-        listaDeMusica.alterarMusica(1, musica2);
+        //listaDeMusica.alterarMusica(3, musica2);
 
         //Trocar posição
-        listaDeMusica.trocarPosicaoEntreMusicas(1, 2);
+        listaDeMusica.trocarPosicaoEntreMusicas(0, 3);
+
+        //listaDeMusica.ordenarMusicas(ordenador);
 
         datasetMusica.escreverDatasetColecao(novoDatasetColecao, listaDeMusica);
 

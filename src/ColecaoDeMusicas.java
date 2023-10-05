@@ -13,4 +13,6 @@ public interface ColecaoDeMusicas {
     void alterarMusica(int posicaoDaMusica, Musica novaMusica);
 
     void ordenarMusicas(Ordenador ordenador);
+
+    Iterador obterIterador();
 }
